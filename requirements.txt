@@ -1,0 +1,8 @@
+pytest
+coverage
+bandit
+wily
+toml
+sqlalchemy
+sqlalchemy2-stubs
+psycopg2-binary

@@ -1,0 +1,27 @@
+version = 1
+disable_exsiting_loggers = false
+
+[formatters.simple]
+format = '[%(asctime)s.%(msecs)03d [%(threadName)s] %(module)s %(levelname)s] - %(message)s]'
+datefmt = '%H:%M:%S'
+
+[handlers.console]
+class = 'logging.StreamHandler'
+level = 'INFO'
+formatter = 'simple'
+stream = 'ext://sys.stdout'
+
+[handlers.file-rotating]
+class = 'logging.handlers.TimedRotatingFileHandler'
+filename = './runtime/logs/app.log'
+level = 'DEBUG'
+formatter = 'simple'
+when = 'D'
+
+[loggers.util]
+level = 'DEBUG'
+propagate = true
+
+[root]
+level = 'DEBUG'
+handlers = ['console', 'file-rotating']

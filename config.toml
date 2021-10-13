@@ -1,0 +1,38 @@
+# Keys
+title = "Application Configuration"
+
+# Tables
+[project]
+name = "Python Development Baseline Template"
+description = "Just a cookiecutter starter template"
+version = "1.0.0"
+updated = 2021-07-02
+author = "python engineer"
+
+[database]
+host = "127.0.0.1"
+password = "1d0nt5now"
+port = 5432
+name = "testdb"
+connection_max = 5000
+enable = true
+
+# Nested `tables`
+[environment]
+  [environment.dev]
+    env = "dev"
+  [environment.test]
+    env = "test"
+  [environment.production]
+    env = "production"
+
+# Array of Tables
+[[testers]]
+id = 1
+username = "JohnWick"
+password = "SeeYouAt4"
+
+[[testers]]
+id = 3
+username = "TheRock"
+password = "NotInFast9"
