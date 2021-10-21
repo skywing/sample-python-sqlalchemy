@@ -17,6 +17,10 @@ def engine() -> Engine:
 
 @pytest.fixture(scope='class', autouse=True)
 def create_test_language_table(engine: Engine):
+    '''
+        create a copy of the dvd rental language table that will be used on the 
+        subsequene test cases
+    '''
     with engine.connect() as conn:
         with conn.begin() as tx:
             conn.execute(text('drop table if exists test_language'))
