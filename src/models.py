@@ -3,6 +3,7 @@ from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy import TIMESTAMP, TEXT, DECIMAL, SMALLINT, Index, LargeBinary, BOOLEAN
 from sqlalchemy import func, text, Sequence
 from sqlalchemy.orm import relation, relationship, backref, registry
+from sqlalchemy.sql.elements import Over
 from sqlalchemy.sql.expression import null
 from sqlalchemy.sql.schema import MetaData
 from sqlalchemy.sql.sqltypes import ARRAY, Time
@@ -162,6 +163,15 @@ class Country():
 
 @mapper_registry.mapped
 class Rental():
+    '''
+    SAWarning: relationship 'Rental.film' will copy column film.film_id to column inventory.film_id,
+    which conflicts with relationship(s): 'Film.stores' (copies film.film_id to inventory.film_id), 'Store.stores' (copies film.film_id to inventory.film_id).
+    If this is not the intention, consider if these relationships should be linked with back_populates,
+    or if viewonly=True should be applied to one or more if they are read-only.
+    For the less common case that foreign key constraints are partially overlapping,
+    the orm.foreign() annotation can be used to isolate the columns that should be written towards.
+    To silence this warning, add the parameter 'overlaps="stores,stores"' to the 'Rental.film' relationship.
+    '''
     __tablename__ = 'rental'
     rental_id = Column('rental_id', Integer, Sequence('rental_rental_id_seq'), primary_key=True)
     rental_date = Column('rental_date', TIMESTAMP, nullable=False)
@@ -170,8 +180,8 @@ class Rental():
     return_date = Column('return_date', TIMESTAMP)
     staff_id = Column('staff_id', Integer, ForeignKey('staff.staff_id'), nullable=False)
     last_update = Column('last_update', TIMESTAMP, nullable=False, default=datetime.utcnow)
-
-    film = relationship('Film', secondary=inventory, uselist=False)
+    # use of overlaps="stores,stores" for valid relationship in this case.
+    film = relationship('Film', secondary=inventory, uselist=False, overlaps="stores,stores")
     staff = relationship('Staff', lazy='joined', innerjoin=True)
     customer = relationship('Customer', lazy='joined', innerjoin=True)
 
