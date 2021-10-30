@@ -21,7 +21,7 @@ def test_validate_actor_table():
     assert test_actor_table.primary_key is not None
 
     stmt = select(test_actor_table)
-    assert str(stmt) == 'SELECT test_actor.actor_id, test_actor.first_name, test_actor.last_name, test_actor.last_update \nFROM test_actor'
+    assert str(stmt) == 'SELECT unittest.test_actor.actor_id, unittest.test_actor.first_name, unittest.test_actor.last_name, unittest.test_actor.last_update \nFROM unittest.test_actor'
 
 def test_metadata_table():
     actor_tbl = metadata.tables['unittest.test_actor']
