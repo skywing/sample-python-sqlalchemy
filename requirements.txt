@@ -6,3 +6,4 @@ toml
 sqlalchemy
 sqlalchemy2-stubs
 psycopg2-binary
+docker
