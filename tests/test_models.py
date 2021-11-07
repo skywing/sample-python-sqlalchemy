@@ -1,21 +1,19 @@
-
 from datetime import datetime
 from decimal import Decimal
 from typing import Any, List
 from operator import attrgetter
+import pytest
 from sqlalchemy import create_engine, select, func
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
 from models import Category, Film, Language, Actor, Store, Staff
 from models import Rental, Payment
-from models import film_actor, film_category, inventory
-import pytest
 
 # pylint: disable=redefined-outer-name, pointless-string-statement
 
 @pytest.fixture(scope='class')
 def engine():
-    engine : Engine = create_engine('postgresql://postgres:postgres@localhost/dvdrental', future=True, echo=True)
+    engine : Engine = create_engine('postgresql://postgres:postgres@localhost:5438/dvdrental', future=True, echo=True)
     yield engine
 
 @pytest.fixture(scope='function')

@@ -10,6 +10,7 @@ This learning project focus on the SQLAlchemy foundational usage:
     - one to many
     - many to many
 - Use of built-in & user defined database functions
+- Use docker Python API to setup test DVD rental database that can be reuse for each test session
 
 
 ## Setup and Install Dependencies
@@ -45,10 +46,18 @@ These are PEP-484 typing stubs for SQLAlchemy 1.4 and 2.0. They are released con
 
 
 ## Additional Tools
-###  https://github.com/agronholm/sqlacodegen
-This is a tool that reads the structure of an existing database and generates the appropriate SQLAlchemy model code, using the declarative style if possible.
+### Docker Python API
+[A Python library](https://pypi.org/project/docker/) for the Docker Engine [API](https://docker-py.readthedocs.io/en/stable/index.html). It lets you do anything the docker command does, but from within Python apps – run containers, manage containers, manage Swarms, etc.
+### SQLAlchemy model generation tool
+This is a SQLAlchemy model [generation tool](https://github.com/agronholm/sqlacodegen) that reads the structure of an existing database and generates the appropriate SQLAlchemy model code, using the declarative style if possible.
 
 This tool was written as a replacement for sqlautocode, which was suffering from several issues (including, but not limited to, incompatibility with Python 3 and the latest SQLAlchemy version).
+
+The following default command is used to generate a sample of the model that can be used as a reference to see the differences between your code and an auto gen code.
+
+```zsh
+sqlacodegen --outfile models_from_sqlacodegen.py postgressql://postgres:postgres@localhost/dvdrental
+```
 
 ## Contribution workflow
 Here's how we suggest you to go about proposing a change to this project:

@@ -2,9 +2,9 @@ from datetime import datetime
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy import TIMESTAMP, TEXT, DECIMAL, SMALLINT, Index, LargeBinary, BOOLEAN
 from sqlalchemy import func, text, Sequence
-from sqlalchemy.orm import relation, relationship, backref, registry
+from sqlalchemy.orm import relationship, registry
 from sqlalchemy.sql.schema import MetaData
-from sqlalchemy.sql.sqltypes import ARRAY, Time
+from sqlalchemy.sql.sqltypes import ARRAY
 
 
 mapper_registry = registry(metadata=MetaData(schema='public'))

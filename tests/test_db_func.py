@@ -11,7 +11,7 @@ import pytest
 
 @pytest.fixture(scope='class')
 def engine():
-    engine : Engine = create_engine('postgresql://postgres:postgres@localhost/dvdrental', future=True, echo=True)
+    engine : Engine = create_engine('postgresql://postgres:postgres@localhost:5438/dvdrental', future=True, echo=True)
     yield engine
 
 @pytest.fixture(scope='function')

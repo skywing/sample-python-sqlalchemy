@@ -13,7 +13,7 @@ import pytest
 @pytest.fixture(scope='class')
 def engine() -> Engine:
     '''Setup the engine for test cases in the module'''
-    return create_engine('postgresql://postgres:postgres@localhost/dvdrental', future=True)
+    return create_engine('postgresql://postgres:postgres@localhost:5438/dvdrental', future=True)
 
 @pytest.fixture(scope='class', autouse=True)
 def create_test_language_table(engine: Engine):
